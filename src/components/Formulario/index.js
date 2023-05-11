@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -33,16 +34,42 @@ const validationSchema = Yup.object().shape({
   };
 
   export const Formulario = () => {
+    const [usuario, setUsuario] = useState('');
+    const navigation = useNavigate();
+
+    const handleButton = () => {
+      console.log("entré");
+      navigation('/products')
+    };
+
+    useEffect(() => {
+        //axios.get(url/id) devuelve objeto response
+        // setUsuario(response)
+        //initialValues.username = usuario.name
+
+    }, [])
+
+    const sendToApi = (user) => {
+        //axios.post(URL, user)
+    }
+
+    const validateExistedUser = (user) => {
+        // preguntar al raay o a la api si ya existe este nombre o este correo
+    }
+
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: (values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        },
-      });
+            console.log("mostrando los valores del formik", values);
+            sendToApi(values);
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
+        }
+      })
+
     return (
       <div>
         <h1>Formulario de registro</h1>
@@ -50,17 +77,23 @@ const validationSchema = Yup.object().shape({
         <form onSubmit={formik.handleSubmit}>
             <input type="text" name="username" placeholder="Nombre de usuario" {...formik.getFieldProps('username')} />
             {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}
+
             <input type="number" name="age" placeholder="Edad" {...formik.getFieldProps('age')} />
             {formik.touched.age && formik.errors.age && <div>{formik.errors.age}</div>}
+
             <input type="email" name="email" placeholder="Correo electrónico" {...formik.getFieldProps('email')} />
             {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
+
             <input type="password" name="password" placeholder="Contraseña" {...formik.getFieldProps('password')} />
             {formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}
+
             <input type="text" name="phone" placeholder="Teléfono" {...formik.getFieldProps('phone')} />
             {formik.touched.phone && formik.errors.phone && <div>{formik.errors.phone}</div>}
             <button type="submit" disabled={formik.isSubmitting}>
             Registrarse
             </button>
+
+            <button type='button' onClick={() => handleButton()}>Ir a otra página</button>
         </form>
       </div>
     );
