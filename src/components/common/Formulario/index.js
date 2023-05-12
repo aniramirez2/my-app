@@ -27,17 +27,19 @@ const validationSchema = Yup.object().shape({
     address: Yup.string(),
   });
 
-  const initialValues = {
-    username: '',
-    age: '',
-    email: '',
-    password: '',
-    phone: '',
-    address: '',
-  };
+  
 
-  export const Formulario = () => {
-    const [usuario, setUsuario] = useState('');
+  export const Formulario = ({user, handleUser}) => {
+
+    const initialValues = {
+      username: '' | user?.username,
+      age: '' | user?.age,
+      email: user?.email | '',
+      password: user?.password | '',
+      phone: user?.phone | '',
+      address: user?.address | '',
+    };
+
     const navigation = useNavigate();
 
     const handleButton = () => {
@@ -45,31 +47,11 @@ const validationSchema = Yup.object().shape({
       navigation('/products')
     };
 
-    useEffect(() => {
-        //axios.get(url/id) devuelve objeto response
-        // setUsuario(response)
-        //initialValues.username = usuario.name
-
-    }, [])
-
-    const sendToApi = (user) => {
-        //axios.post(URL, user)
-    }
-
-    const validateExistedUser = (user) => {
-        // preguntar al raay o a la api si ya existe este nombre o este correo
-    }
-
     const formik = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: (values, { setSubmitting }) => {
-            console.log("mostrando los valores del formik", values);
-            sendToApi(values);
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+        onSubmit: (values) => {
+          handleUser(values);
         }
       })
 
