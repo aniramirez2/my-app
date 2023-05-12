@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useNavigation } from 'react-router-dom';
+//https://vanilla-pastoral-salmon.glitch.me/users
 
 const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -23,6 +24,7 @@ const validationSchema = Yup.object().shape({
       .min(10, 'El teléfono debe tener al menos 10 caracteres')
       .max(10, 'El teléfono no debe tener más de 10 caracteres')
       .required('El teléfono es obligatorio'),
+    address: Yup.string(),
   });
 
   const initialValues = {
@@ -31,6 +33,7 @@ const validationSchema = Yup.object().shape({
     email: '',
     password: '',
     phone: '',
+    address: '',
   };
 
   export const Formulario = () => {
@@ -89,6 +92,10 @@ const validationSchema = Yup.object().shape({
 
             <input type="text" name="phone" placeholder="Teléfono" {...formik.getFieldProps('phone')} />
             {formik.touched.phone && formik.errors.phone && <div>{formik.errors.phone}</div>}
+
+            <input type="text" name="address" placeholder="Direacción" {...formik.getFieldProps('address')} />
+            {formik.touched.address && formik.errors.address && <div>{formik.errors.address}</div>}
+
             <button type="submit" disabled={formik.isSubmitting}>
             Registrarse
             </button>

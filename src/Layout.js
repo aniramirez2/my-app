@@ -9,11 +9,9 @@ export const Layout = () => {
 
     return <main style={{backgroundColor: "pink"}}>
         <nav>
-          <ul>
-            <li><NavLink to="/products">Pagina 1 - Productos</NavLink></li>
-            <li><NavLink to="/page2">Pagina 2</NavLink></li>
-            <li><NavLink to="/page3">Pagina 3</NavLink></li>
-            <li><NavLink to="/formulario">Form</NavLink></li>
+          <ul style={{display: "flex"}}>
+            <li><NavLink to="/createUser">Crear usuários</NavLink></li>
+            <li><NavLink to="/listUser">Lista de usuários</NavLink></li>
           </ul>
         </nav>
         <Outlet/>
