@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate, useNavigation } from 'react-router-dom';
-//https://vanilla-pastoral-salmon.glitch.me/users
 
 const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -40,20 +37,13 @@ const validationSchema = Yup.object().shape({
       address: user?.address | '',
     };
 
-    const navigation = useNavigate();
-
-    const handleButton = () => {
-      console.log("entré");
-      navigation('/products')
-    };
-
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: (values) => {
           handleUser(values);
         }
-      })
+    })
 
     return (
       <div>
@@ -81,8 +71,6 @@ const validationSchema = Yup.object().shape({
             <button type="submit" disabled={formik.isSubmitting}>
             Registrarse
             </button>
-
-            <button type='button' onClick={() => handleButton()}>Ir a otra página</button>
         </form>
       </div>
     );

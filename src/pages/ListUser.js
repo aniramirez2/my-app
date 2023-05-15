@@ -22,7 +22,7 @@ export const ListUser = () => {
     }
 
     const handleEdit = (user) => {
-        navigate('updateUser', { user })
+        navigate(`/updateUser/${user.id}`)
     }
 
     return <>

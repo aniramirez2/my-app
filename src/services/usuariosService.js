@@ -5,6 +5,11 @@ export const get = async (endpoint) => {
     const response = await instanceAxios.get(endpoint);
     return response.data;
   };
+
+  export const getById = async (endpoint) => {
+    const response = await instanceAxios.get(endpoint);
+    return response.data;
+  };
   
   // Función que realiza una petición POST a la API
   export const post = async (endpoint, data) => {
