@@ -29,7 +29,7 @@ export const ListUser = () => {
         <h1>Este es la página list user</h1>
         <ul>
         {
-            users.map(user => <li>{user.username} <button onClick={() => handleDelete(user.id, user.username)} >Eliminar</button> <button onClick={() => handleEdit(user)}>Editar</button> </li>)
+            users.map(user => <li key={user.id}>{user.username} <button onClick={() => handleDelete(user.id, user.username)} >Eliminar</button> <button onClick={() => handleEdit(user)}>Editar</button> </li>)
         }
         </ul>
     </>

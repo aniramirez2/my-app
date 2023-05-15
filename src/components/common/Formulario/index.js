@@ -26,23 +26,25 @@ const validationSchema = Yup.object().shape({
 
   
 
-  export const Formulario = ({user, handleUser}) => {
+  export const Formulario = ({username, age, email, password, phone, address, handleUser}) => {
 
     const initialValues = {
-      username: '' | user?.username,
-      age: '' | user?.age,
-      email: user?.email | '',
-      password: user?.password | '',
-      phone: user?.phone | '',
-      address: user?.address | '',
+      username:  ''  || username,
+      age:  age || '',
+      email: email || '',
+      password: password || '',
+      phone: phone || '',
+      address: address || '',
     };
+    
 
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: (values) => {
           handleUser(values);
-        }
+        },
+        enableReinitialize: true
     })
 
     return (
