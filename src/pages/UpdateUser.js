@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Formulario } from "../components/common/Formulario"
 import { useNavigate, useParams } from "react-router-dom";
 import { getById, put } from "../services/usuariosService";
@@ -8,15 +8,15 @@ export const UpdateUser = () => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    const getUser = async () => {
+ 
+    const getUser = useCallback(async() => {
         const response = await getById(`users/${id}`);
         handleUser(response);
-        //console.log("user from update user", user);
-    }
+      }, [id]);
 
     useEffect(() => {
         getUser();
-    }, [])
+    }, [getUser])
 
     const handleNewUser = async (newUser) => {
         await put(`users/${id}`, newUser);

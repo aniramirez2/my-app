@@ -1,11 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom"
 
 
-export const Layout = () => {
-
-
-    const style = ({isActive}) => ({color: isActive ? 'red' : 'blue'})
-    
+export const Layout = () => {    
 
     return <main style={{backgroundColor: "pink"}}>
         <nav>
