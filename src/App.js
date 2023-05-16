@@ -5,10 +5,9 @@ import { CreateUser } from './pages/CreateUser';
 import { ListUser } from './pages/ListUser';
 import { UpdateUser } from './pages/UpdateUser';
 
-
 function App() {
  
-  return (    
+  return (
     <Routes>      
       <Route element={<Layout/>}>
         <Route path='listUser' Component={ListUser}></Route>

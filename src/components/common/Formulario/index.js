@@ -1,5 +1,13 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+  Flex,
+  Button
+} from '@chakra-ui/react'
 
 const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -52,27 +60,48 @@ const validationSchema = Yup.object().shape({
         <h1>Formulario de registro</h1>
         
         <form onSubmit={formik.handleSubmit}>
-            <input type="text" name="username" placeholder="Nombre de usuario" {...formik.getFieldProps('username')} />
-            {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}
+          <Flex overflow="wrap" flexWrap="wrap" alignContent="center" flexDirection="column">
+            <FormControl w="25%">
+              <FormLabel>Nombre de usuario</FormLabel>
+              <Input type="text" name="username" placeholder="Nombre de usuario" {...formik.getFieldProps('username')} />
+              <FormErrorMessage>{formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}</FormErrorMessage>
+            </FormControl>
 
-            <input type="number" name="age" placeholder="Edad" {...formik.getFieldProps('age')} />
-            {formik.touched.age && formik.errors.age && <div>{formik.errors.age}</div>}
+            <FormControl w="25%">
+              <FormLabel>Edad</FormLabel>
+              <Input type="number" name="age" placeholder="Edad" {...formik.getFieldProps('age')} />
+              <FormErrorMessage>{formik.touched.age && formik.errors.age && <div>{formik.errors.age}</div>}</FormErrorMessage>
+            </FormControl>
 
-            <input type="email" name="email" placeholder="Correo electrónico" {...formik.getFieldProps('email')} />
-            {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
+            <FormControl w="25%">
+              <FormLabel>Correo electrónico</FormLabel>
+              <Input type="email" name="email" placeholder="Correo electrónico" {...formik.getFieldProps('email')} />
+              <FormErrorMessage>{formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}</FormErrorMessage>
+            </FormControl> 
 
-            <input type="password" name="password" placeholder="Contraseña" {...formik.getFieldProps('password')} />
-            {formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}
+            <FormControl w="25%">
+              <FormLabel>Contraseña</FormLabel>
+              <Input type="password" name="password" placeholder="Contraseña" {...formik.getFieldProps('password')} />
+              <FormErrorMessage>{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
+            </FormControl>
 
-            <input type="text" name="phone" placeholder="Teléfono" {...formik.getFieldProps('phone')} />
-            {formik.touched.phone && formik.errors.phone && <div>{formik.errors.phone}</div>}
+            <FormControl w="25%">
+              <FormLabel>Teléfono</FormLabel>
+              <Input type="text" name="phone" placeholder="Teléfono" {...formik.getFieldProps('phone')} />
+              <FormErrorMessage>{formik.touched.phone && formik.errors.phone && <div>{formik.errors.phone}</div>}</FormErrorMessage>
+            </FormControl>
 
-            <input type="text" name="address" placeholder="Direacción" {...formik.getFieldProps('address')} />
-            {formik.touched.address && formik.errors.address && <div>{formik.errors.address}</div>}
+            <FormControl w="25%">
+              <FormLabel>Dirección</FormLabel>
+              <Input type="text" name="address" placeholder="Direacción" {...formik.getFieldProps('address')} />
+              <FormErrorMessage>{formik.touched.address && formik.errors.address && <div>{formik.errors.address}</div>}</FormErrorMessage>
+            </FormControl>
+              
 
-            <button type="submit" disabled={formik.isSubmitting}>
-            Registrarse
-            </button>
+            <Button mt={7} colorScheme='teal' variant='outline' type="submit" disabled={formik.isSubmitting}>
+              Registrarse
+            </Button>
+          </Flex>
         </form>
       </div>
     );
