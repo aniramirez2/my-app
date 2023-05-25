@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { deletes, get } from "../services/usuariosService";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "./ContextCarrito";
 
 export const ListUser = () => {
+    
+    const { cartItems, addToCart } = useContext(CartContext);
+
     const navigate = useNavigate();
     const [users, handleUsers] = useState([]);
 
@@ -12,7 +16,7 @@ export const ListUser = () => {
     }
 
     useEffect(() => {        
-        getUsers();
+        addToCart({name: "papas", precio: "2500", cantidad: "3"})
     }, [])
 
     const handleDelete = async (id, name) => {
@@ -29,7 +33,7 @@ export const ListUser = () => {
         <h1>Este es la página list user</h1>
         <ul>
         {
-            users.map(user => <li key={user.id}>{user.username} <button onClick={() => handleDelete(user.id, user.username)} >Eliminar</button> <button onClick={() => handleEdit(user)}>Editar</button> </li>)
+            cartItems.map(user => <li key={user.name}>{user.name} - {user.precio} - {user.cantidad} <button onClick={() => handleDelete(user.id, user.username)} >Eliminar</button> <button onClick={() => handleEdit(user)}>Editar</button> </li>)
         }
         </ul>
     </>
