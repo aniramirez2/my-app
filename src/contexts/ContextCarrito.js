@@ -8,6 +8,7 @@ export const ContextCarritoProvider = ({ children }) => {
 
     const addToCart = (product) => {
         setCartItems([...cartItems, product]);
+        console.log("cart items", cartItems)
     };
 
     const removeFromCart = (productId) => {

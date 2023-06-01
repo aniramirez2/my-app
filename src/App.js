@@ -4,24 +4,23 @@ import { Layout } from './Layout';
 import { CreateUser } from './pages/CreateUser';
 import { ListUser } from './pages/ListUser';
 import { UpdateUser } from './pages/UpdateUser';
-import { ContextCarritoProvider } from './pages/ContextCarrito';
+import { ContextCarritoProvider } from './contexts/ContextCarrito';
 
 function App() {
 
   return (
-              
-    <ContextCarritoProvider>
       <Routes>
-          <Route element={<Layout />}>
-              <Route path='listUser' Component={ListUser}></Route>
+          <Route element={<ContextCarritoProvider><Layout /></ContextCarritoProvider>}>
+            <Route path='listUser' element={<ListUser/>}></Route>
             <Route path='createUser' Component={CreateUser}></Route>
-            <Route path='updateUser' >
-              <Route path=':id' Component={UpdateUser}></Route>
-            </Route>
-            <Route path="/" element={<Navigate to="/createUser" />} />
           </Route>
-      </Routes>    
-    </ContextCarritoProvider>
+          <Route path='updateUser' >
+            <Route path=':id' Component={UpdateUser}></Route>
+          </Route>
+          <Route path="/" element={<Navigate to="/createUser" />} />
+          
+      </Routes>
+    
   );
 }
 
