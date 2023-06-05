@@ -6,9 +6,13 @@ import { ListUser } from './pages/ListUser';
 import { UpdateUser } from './pages/UpdateUser';
 import { ContextCarritoProvider } from './contexts/ContextCarrito';
 
+
+
 function App() {
 
+
   return (
+    <>
       <Routes>
           <Route element={<ContextCarritoProvider><Layout /></ContextCarritoProvider>}>
             <Route path='listUser' element={<ListUser/>}></Route>
@@ -20,7 +24,7 @@ function App() {
           <Route path="/" element={<Navigate to="/createUser" />} />
           
       </Routes>
-    
+    </>
   );
 }
 
